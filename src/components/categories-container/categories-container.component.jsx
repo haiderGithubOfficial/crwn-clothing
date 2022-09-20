@@ -4,7 +4,9 @@ import CategoryItem from "../category-item/category-item.component";
 const Categories = ({ categories }) => {
   return (
     <div className="categories-container">
-      <CategoryItem categories={categories} />
+      {categories.map((categories) => {
+        return <CategoryItem key={categories.id} categories={categories} />;
+      })}
     </div>
   );
 };
