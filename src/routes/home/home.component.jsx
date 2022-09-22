@@ -1,4 +1,5 @@
 import Categories from "../../components/categories-container/categories-container.component";
+
 const Home = () => {
   const categories = [
     {
@@ -27,7 +28,11 @@ const Home = () => {
       imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
     },
   ];
-  return <Categories categories={categories} />;
+  return (
+    <div>
+      <Categories categories={categories} />
+    </div>
+  );
 };
 
 export default Home;
