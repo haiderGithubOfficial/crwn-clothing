@@ -76,7 +76,7 @@ const SignUpForm = () => {
           value={confirmPassword}
           onChange={onChangeHandler}
         />
-        <Button buttonType="inverted">Sign Up</Button>
+        <Button children={"Sign UP"} type="submit" />
       </form>
     </div>
   );
