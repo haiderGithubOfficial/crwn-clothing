@@ -36,8 +36,7 @@ const SignInForm = () => {
 
   const googleSignIn = async () => {
     try {
-      const { user } = await signInWithGogglePopup();
-      setCurrentUser(user);
+      await signInWithGogglePopup();
     } catch (error) {
       console.log(error);
     }

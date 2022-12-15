@@ -31,11 +31,14 @@ const SignUpForm = () => {
       return;
     }
     try {
+      console.log("in signup1");
       const { user } = await createAuthUserWithEmailAndPassword(
         email,
         password
       );
+
       createUserDocumentFromAuth(user, { displayName });
+      console.log("in signup2");
       setCurrentUser(user);
     } catch (error) {
       console.log(error.code);
