@@ -11,7 +11,6 @@ import { CartContext } from "../../contexts/cart.context";
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { display, setDisplay } = useContext(CartContext);
-  const { cartItem } = useContext(CartContext);
 
   const dropdownHandler = () => {
     setDisplay(!display);
@@ -38,7 +37,7 @@ const Navigation = () => {
               Sign In
             </Link>
           )}
-          <CartIcon dropdownHandler={dropdownHandler} cartItem={cartItem} />
+          <CartIcon dropdownHandler={dropdownHandler} />
         </div>
         {display ? <CartDropdown /> : ""}
       </div>
