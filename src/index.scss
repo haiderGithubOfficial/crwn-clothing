@@ -1,12 +1,13 @@
-@tailwind components;
-@tailwind utilities;
 * {
   box-sizing: border-box;
   // border: 1px solid black;
 }
+@tailwind components;
+@tailwind utilities;
 
 body {
   margin: 0;
+  padding: 20px 40px;
   font-family: "Encode Sans Condensed", sans-serif;
   // font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
