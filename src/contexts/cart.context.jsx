@@ -20,15 +20,19 @@ export const CartContext = createContext({
   display: false,
   setDisplay: () => {},
   cartItems: [],
+  setCartItems: () => {},
   addItemToCart: () => {},
   cartCount: 0,
   setCartCount: () => {},
+  total: 0,
+  setTotal: () => {},
 });
 
 export const CartProvider = ({ children }) => {
   const [display, setDisplay] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+  const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const newCartCount = cartItems.reduce(
@@ -36,12 +40,26 @@ export const CartProvider = ({ children }) => {
       0
     );
     setCartCount(newCartCount);
+
+    const newTotal = cartItems.reduce(
+      (total, cartItem) => total + cartItem.price * cartItem.quantity,
+      0
+    );
+    setTotal(newTotal);
   }, [cartItems]);
 
   const addItemToCart = (productToAdd) => {
     setCartItems(addCardItem(cartItems, productToAdd));
   };
 
-  const value = { display, setDisplay, addItemToCart, cartItems, cartCount };
+  const value = {
+    display,
+    setDisplay,
+    addItemToCart,
+    setCartItems,
+    cartItems,
+    cartCount,
+    total,
+  };
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
