@@ -16,8 +16,11 @@ const CheckoutItem = ({ cartItem }) => {
 
   const cartCount = (event) => {
     const newCartCount = Number(event.target.value);
-    const newCartItems = cartItems.filter((item) => item.id !== cartItem.id);
-    setCartItems([...newCartItems, { ...cartItem, quantity: newCartCount }]);
+    const newCartItems = cartItems.map((item) =>
+      item.id === cartItem.id ? { ...cartItem, quantity: newCartCount } : item
+    );
+
+    setCartItems(newCartItems);
   };
 
   return (
