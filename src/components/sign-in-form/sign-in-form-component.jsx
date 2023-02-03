@@ -4,9 +4,10 @@ import FormInput from "../form-input/form-input.component";
 
 import Button from "../Button/Button.component";
 import { signInWithGogglePopup } from "../../utils/firebase/firebase.utils";
-import "./sign-in-form.styles.scss";
 import { UserContext } from "../../contexts/user.context";
+import { ButtonContainer } from "./sign-in-form.styles.jsx";
 
+import { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 const SignInForm = () => {
   const defaultFormFields = {
     email: "",
@@ -62,15 +63,15 @@ const SignInForm = () => {
           value={password}
           onChange={onChangeHandler}
         />
-        <div className="buttons-container">
+        <ButtonContainer>
           <Button children={"Sign IN"} type="submit" />
           <Button
             type={"button"}
             children={"Google Sign In"}
-            buttonType={"google"}
+            buttonType={BUTTON_TYPE_CLASSES.google}
             onClick={googleSignIn}
           />
-        </div>
+        </ButtonContainer>
       </form>
     </div>
   );
