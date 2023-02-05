@@ -6,7 +6,7 @@ import {
 const DirectoryItem = ({ directoryItem }) => {
   const { title, imageUrl } = directoryItem;
   return (
-    <DirectoryItemContainer>
+    <DirectoryItemContainer key={directoryItem.id + 2}>
       <BackgroundImage imageUrl={imageUrl} />
       <Body>
         <h2>{title}</h2>

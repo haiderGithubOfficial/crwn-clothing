@@ -29,7 +29,7 @@ const Home = () => {
   ];
   return (
     <div>
-      <Directory directoryItems={directoryItems} />
+      <Directory key={directoryItems.id} directoryItems={directoryItems} />
     </div>
   );
 };
