@@ -7,12 +7,14 @@ import { CategoryTitle, CategoryContainer } from "./category.styles";
 const Category = () => {
   const { category } = useParams();
   const { categoriesMap } = useContext(CategoriesContext);
-  const [products, setProducts] = useState(categoriesMap[category]);
+  const [products, setProducts] = useState(
+    categoriesMap ? categoriesMap[category] : null
+  ); // categoriesMap ? categoriesMap[category] : [] this means that if and only if the categoriesMap is not undefined then look init as categoriesMap[category]. otherwise it will give error of undefined[category]. This happens when we fetch data as async and on the first rendering the data is not yet available
 
   useEffect(() => {
-    setProducts(categoriesMap[category]);
+    setProducts(categoriesMap ? categoriesMap[category] : null);
     //eslint-disable-next-line
-  }, [category, products]);
+  }, [category, products, categoriesMap]);
 
   return (
     <>
