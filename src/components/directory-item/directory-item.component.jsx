@@ -10,7 +10,7 @@ const DirectoryItem = ({ directoryItem }) => {
       <BackgroundImage imageUrl={imageUrl} />
       <Body>
         <h2>{title}</h2>
-        <p>shop now</p>
+        <p>Shop Now</p>
       </Body>
     </DirectoryItemContainer>
   );

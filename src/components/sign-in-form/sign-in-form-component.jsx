@@ -4,18 +4,24 @@ import FormInput from "../form-input/form-input.component";
 
 import Button from "../Button/Button.component";
 import { signInWithGogglePopup } from "../../utils/firebase/firebase.utils";
-import { UserContext } from "../../contexts/user.context";
+
 import { ButtonContainer } from "./sign-in-form.styles.jsx";
 
 import { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
+
+import { useDispatch } from "react-redux/es/exports";
+import { setCurrentUser } from "../../store/user/user.action";
+
 const SignInForm = () => {
+  const dispatch = useDispatch();
+
   const defaultFormFields = {
     email: "",
     password: "",
   };
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  //const { setCurrentUser } = useContext(UserContext);
 
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
@@ -30,6 +36,7 @@ const SignInForm = () => {
     // }
     try {
       const { user } = await signInAutWithEmailAndPassword(email, password);
+      dispatch(setCurrentUser(user));
     } catch (error) {
       console.log(error.code);
     }

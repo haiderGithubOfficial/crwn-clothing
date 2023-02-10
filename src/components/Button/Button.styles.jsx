@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const BaseButton = styled.button`
-  min-width: 190px;
+  min-width: 80%;
   width: auto;
-  height: 50px;
+  height: 47px;
   letter-spacing: 0.5px;
   line-height: 50px;
-  padding: 0 35px 0 35px;
-  font-size: 13px;
+  padding: 0 0.5em 0 0.5em;
+  font-size: 0.9em;
   background-color: black;
   color: white;
   text-transform: uppercase;

@@ -1,14 +1,19 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
 } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import Button from "../Button/Button.component";
-import { UserContext } from "../../contexts/user.context";
+
 import { StyledSignUpContainer } from "./sign-up-form.styles.jsx";
 
+import { useDispatch } from "react-redux/es/exports";
+import { setCurrentUser } from "../../store/user/user.action";
+
 const SignUpForm = () => {
+  const dispatch = useDispatch();
+
   const defaultFormFields = {
     displayName: "",
     email: "",
@@ -17,7 +22,7 @@ const SignUpForm = () => {
   };
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
-  const { setCurrentUser } = useContext(UserContext);
+  //  const { setCurrentUser } = useContext(UserContext);
   const onChangeHandler = (event) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
@@ -38,7 +43,7 @@ const SignUpForm = () => {
 
       createUserDocumentFromAuth(user, { displayName });
       console.log("in signup2");
-      setCurrentUser(user);
+      dispatch(setCurrentUser(user));
     } catch (error) {
       console.log(error.code);
     }
