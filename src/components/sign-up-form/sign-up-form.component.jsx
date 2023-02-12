@@ -8,12 +8,7 @@ import Button from "../Button/Button.component";
 
 import { StyledSignUpContainer } from "./sign-up-form.styles.jsx";
 
-import { useDispatch } from "react-redux/es/exports";
-import { setCurrentUser } from "../../store/user/user.action";
-
 const SignUpForm = () => {
-  const dispatch = useDispatch();
-
   const defaultFormFields = {
     displayName: "",
     email: "",
@@ -43,7 +38,6 @@ const SignUpForm = () => {
 
       createUserDocumentFromAuth(user, { displayName });
       console.log("in signup2");
-      dispatch(setCurrentUser(user));
     } catch (error) {
       console.log(error.code);
     }

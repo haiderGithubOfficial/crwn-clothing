@@ -18,7 +18,6 @@ const App = () => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChangedListener((user) => {
-      console.log(user);
 
       if (user) {
         createUserDocumentFromAuth(user, null);
@@ -28,7 +27,7 @@ const App = () => {
 
       return unsubscribe;
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <Routes>

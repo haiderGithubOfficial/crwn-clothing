@@ -18,7 +18,7 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 
 const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
-
+  console.log(currentUser);
   const { display, setDisplay } = useContext(CartContext);
 
   const dropdownHandler = () => {
