@@ -1,12 +1,10 @@
-import { Fragment, useContext } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Fragment } from "react";
+import { Outlet } from "react-router-dom";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 
 import { userSignOut } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import { CartContext } from "../../contexts/cart.context";
-import { useSelector } from "react-redux/es/exports";
 
 import {
   NavigationContainer,
@@ -16,12 +14,18 @@ import {
 } from "./navigation.styles.jsx";
 import { selectCurrentUser } from "../../store/user/user.selector";
 
+import { useSelector } from "react-redux/es/exports";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
+import { setIsCartOpen } from "../../store/cart/cart.actions";
+
 const Navigation = () => {
+  const dispatch = useDispatch();
   const currentUser = useSelector(selectCurrentUser);
-  const { display, setDisplay } = useContext(CartContext);
+  const isCartOpen = useSelector(selectIsCartOpen);
 
   const dropdownHandler = () => {
-    setDisplay(!display);
+    dispatch(setIsCartOpen(!isCartOpen));
   };
 
   return (
@@ -43,7 +47,7 @@ const Navigation = () => {
           )}
           <CartIcon dropdownHandler={dropdownHandler} />
         </NavLinks>
-        {display ? <CartDropdown /> : ""}
+        {isCartOpen ? <CartDropdown /> : ""}
       </NavigationContainer>
       <Outlet />
     </Fragment>

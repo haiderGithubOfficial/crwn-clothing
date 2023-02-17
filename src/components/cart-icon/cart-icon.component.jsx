@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
-
 import {
   CartIconContainer,
   ShoppingIcon,
   ItemCount,
 } from "./cart-icon.styles.jsx";
 
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import { selectCartCount } from "../../store/cart/cart.selector";
+
 const CartIcon = ({ dropdownHandler }) => {
-  const { cartCount } = useContext(CartContext);
+  const cartCount = useSelector(selectCartCount);
   return (
     <CartIconContainer onClick={dropdownHandler}>
       <ShoppingIcon />
