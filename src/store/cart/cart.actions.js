@@ -69,5 +69,6 @@ export const removeListItemToCart = (cartItems, itemToRemove) => {
     return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems)
 };
 export const setIsCartOpen = (display) => {
+
     return createAction(CART_ACTION_TYPES.CART_DROPDOWN, display);
 };
