@@ -6,16 +6,17 @@ import { useSelector } from "react-redux";
 import { selectCategoriesMap } from "../../store/categories/categories.selector";
 
 const Category = () => {
+  console.log("1 render/re-rendering category component");
   const { category } = useParams();
-  const { categoriesMap } = useSelector(selectCategoriesMap);
-  const [products, setProducts] = useState(
-    categoriesMap ? categoriesMap[category] : null
-  ); // categoriesMap ? categoriesMap[category] : [] this means that if and only if the categoriesMap is not undefined then look init as categoriesMap[category]. otherwise it will give error of undefined[category]. This happens when we fetch data as async and on the first rendering the data is not yet available
+  const categoriesMap = useSelector(selectCategoriesMap);
+  console.log("focus: ", categoriesMap);
+  const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
-    setProducts(categoriesMap ? categoriesMap[category] : null);
+    console.log("3 effect fired calling setProducts");
+    setProducts(categoriesMap[category]);
     //eslint-disable-next-line
-  }, [category, products, categoriesMap]);
+  }, [category, categoriesMap[category]]);
 
   return (
     <>
