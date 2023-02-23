@@ -29,7 +29,7 @@ const SignInForm = () => {
     //   return;
     // }
     try {
-      const { user } = await signInAutWithEmailAndPassword(email, password);
+      await signInAutWithEmailAndPassword(email, password);
     } catch (error) {
       console.log(error.code);
     }

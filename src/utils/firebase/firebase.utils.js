@@ -30,7 +30,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const fireBaseApp = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 
 const provider = new GoogleAuthProvider();
 provider.setCustomParameters({
@@ -53,7 +53,6 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
     })
 
     await batch.commit();
-    console.log('dome');
 }
 
 export const getCategoriesAndDocuments = async () => {
@@ -75,7 +74,6 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
         const { displayName, email } = userAuth;
         const createdDate = new Date();
         try {
-            console.log(additionalInformation);
             await setDoc(userDocRef, {
                 displayName,
                 email,

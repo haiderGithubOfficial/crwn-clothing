@@ -12,7 +12,6 @@ import { selectCartItems } from "../../store/cart/cart.selector";
 
 const CartDropdown = () => {
   const cartItems = useSelector(selectCartItems);
-  console.log("cartItems", cartItems);
   const navigate = useNavigate();
   const gotoCheckoutHandler = () => {
     navigate("/checkout");
