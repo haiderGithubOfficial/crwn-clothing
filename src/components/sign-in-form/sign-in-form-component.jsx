@@ -3,7 +3,10 @@ import FormInput from "../form-input/form-input.component";
 
 import Button from "../Button/Button.component";
 
-import { ButtonContainer } from "./sign-in-form.styles.jsx";
+import {
+  StyledSignInContainer,
+  ButtonContainer,
+} from "./sign-in-form.styles.jsx";
 
 import { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 import { useDispatch } from "react-redux/es/exports";
@@ -45,7 +48,7 @@ const SignInForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <StyledSignInContainer>
       <h2>Already have an account?</h2>
       <span>Sign In with your email and password</span>
       <form onSubmit={handlerOnSubmit}>
@@ -53,6 +56,7 @@ const SignInForm = () => {
           label="Email:"
           type="email"
           name="email"
+          required={true}
           value={email}
           onChange={onChangeHandler}
         />
@@ -61,6 +65,7 @@ const SignInForm = () => {
           label="Password"
           type="password"
           name="password"
+          required={true}
           value={password}
           onChange={onChangeHandler}
         />
@@ -74,7 +79,7 @@ const SignInForm = () => {
           />
         </ButtonContainer>
       </form>
-    </div>
+    </StyledSignInContainer>
   );
 };
 

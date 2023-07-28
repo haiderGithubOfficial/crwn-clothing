@@ -30,4 +30,21 @@ export const CheckoutContainer = styled.div`
     margin-left: auto;
     font-size: 36px;
   }
+
+  @media screen and (max-width: 800px) {
+    width: 90%;
+    .total {
+      font-size: 26px;
+    }
+    .checkout-header {
+      .header-block {
+        text-transform: capitalize;
+        width: unset;
+
+        &:last-child {
+          width: unset;
+        }
+      }
+    }
+  }
 `;

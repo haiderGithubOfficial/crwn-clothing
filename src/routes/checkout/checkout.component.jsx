@@ -5,12 +5,26 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../store/cart/cart.selector";
-
+import { setIsCartOpen } from "../../store/cart/cart.actions";
 import PaymentForm from "../../components/payment-form/payment-form.component";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Checkout = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const cartItems = useSelector(selectCartItems);
   const cartTotal = useSelector(selectCartTotal);
+
+  useEffect(() => {
+    dispatch(setIsCartOpen(false));
+    if (cartTotal === 0) {
+      navigate("/");
+    }
+  }, [[], cartTotal]);
+
   return (
     <CheckoutContainer>
       <div className="checkout-header">
@@ -35,6 +49,7 @@ const Checkout = () => {
           <CheckoutItem key={index} cartItems={cartItems} cartItem={cartItem} />
         );
       })}
+
       <span className="total">Total: ${cartTotal}</span>
       <PaymentForm />
     </CheckoutContainer>

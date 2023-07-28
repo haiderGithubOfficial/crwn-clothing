@@ -33,6 +33,23 @@ export const ProductCardContainer = styled.div`
       display: flex;
     }
   }
+
+  @media screen and (max-width: 800px) {
+    button {
+      display: flex;
+      width: 90%;
+    }
+    &:hover {
+      img {
+        opacity: unset;
+      }
+
+      button {
+        opacity: unset;
+        display: unset;
+      }
+    }
+  }
 `;
 
 export const Footer = styled.div`

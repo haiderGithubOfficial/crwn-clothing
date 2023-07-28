@@ -8,6 +8,7 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import Button, { BUTTON_TYPE_CLASSES } from "../Button/Button.component";
 
 import { PaymentFormContainer, FormContainer } from "./payment-form.styles";
+import SuccessIcon from "../successIcon/success-icon-component";
 
 const PaymentForm = () => {
   const stripe = useStripe();
@@ -15,6 +16,7 @@ const PaymentForm = () => {
   const amount = useSelector(selectCartTotal);
   const currentUser = useSelector(selectCurrentUser);
   const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+  const [paymentResult, setPaymentResult] = useState({});
 
   const paymentHandler = async (e) => {
     e.preventDefault();
@@ -44,16 +46,8 @@ const PaymentForm = () => {
         },
       },
     });
-
     setIsProcessingPayment(false);
-
-    if (paymentResult.error) {
-      alert(paymentResult.error);
-    } else {
-      if (paymentResult.paymentIntent.status === "succeeded") {
-        alert("Payment Succeeded");
-      }
-    }
+    setPaymentResult(paymentResult);
   };
 
   return (
@@ -65,9 +59,24 @@ const PaymentForm = () => {
           isLoading={isProcessingPayment}
           buttonType={BUTTON_TYPE_CLASSES.inverted}
         >
-          {" "}
-          Pay Now{" "}
+          {paymentResult?.paymentIntent?.status === "succeeded" ? (
+            <SuccessIcon />
+          ) : paymentResult?.error ? (
+            "Empty or wrong credentials"
+          ) : (
+            "pay Now"
+          )}
         </Button>
+        <div className="checkout-footer">
+          <p>Card number: </p>
+          <p>4242 4242 4242 4242</p>
+          <p>MM/YY: </p>
+          <p>04 / 24 </p>
+          <p>CVC: </p>
+          <p>242</p>
+          <p>ZIP: </p>
+          <p>42424</p>
+        </div>
       </FormContainer>
     </PaymentFormContainer>
   );

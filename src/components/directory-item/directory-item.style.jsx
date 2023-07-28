@@ -26,11 +26,23 @@ export const Body = styled.div`
     font-size: 22px;
     color: #4a4a4a;
     text-transform: uppercase;
+
+    @media screen and (max-width: 800px) {
+      font-size: 24px;
+      font-weight: bolder;
+      letter-spacing: 2px;
+    }
   }
 
   p {
     font-weight: lighter;
     font-size: 16px;
+  }
+
+  @media screen and (max-width: 800px) {
+    opacity: 0.85;
+    width: 150px;
+    height: 100px;
   }
 `;
 
